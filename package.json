@@ -1,0 +1,29 @@
+{
+  "name": "jquery.reloadify",
+  "title": "jQuery Reloadify",
+  "description": "Caveman reloadification.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/n8v/jquery.reloadify",
+  "author": {
+    "name": "Nathan Vonnahme",
+    "email": "nathan dot vonnahme at banner health dot com",
+    "url": "http://n8v.enteuxis.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/n8v/jquery.reloadify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/n8v/jquery.reloadify/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/n8v/jquery.reloadify/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "~1.5"
+  },
+  "keywords": []
+}
