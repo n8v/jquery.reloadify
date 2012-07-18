@@ -19,7 +19,10 @@ In your web page:
 <script src="dist/jquery.reloadify.min.js"></script>
 <script>
 jQuery(function($) {
-  $.awesome(); // "awesome"
+
+  $.reloadify('my_url'); // Poll 'my_url' every 1 second and reload this
+                         // page when its content changes.
+
 });
 </script>
 ```
