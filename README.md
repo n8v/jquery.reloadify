@@ -2,6 +2,10 @@
 
 Caveman reloadification.
 
+[Shortening the iteration](http://vimeo.com/36579366) is my favorite optimization of my workflow. [LiveReload](http://livereload.com/) is all amazing and everything but it makes assumptions like about things being reasonably modern and non-horrible.
+
+This here, you give it a URL to poll, and when it sees that URL change, it will reload the whole entire page. Making that URL change is left as an exercise for the reader.
+
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
@@ -22,6 +26,8 @@ jQuery(function($) {
 
 ## Documentation
 _(Coming soon)_
+
+Use Docco.
 
 ## Examples
 _(Coming soon)_
