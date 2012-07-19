@@ -5,22 +5,22 @@
 /*global console */
 (function($) {
 
-/*
- * Set up reloadification on the current page.
- * 
- * @param opts String or Object. If it's a string, it signifies the URL
- *    jquery.reloadify should poll for changes every 1 second.
- * 
- * If it's an object it should be like this:
- * 
- *     { 
- *        url      : 'string', // Required!
- *        poll_ms  : 1231,  // Poll every 1231 milliseconds instead of 1000.
- *     }
- * 
- * @return jQuery object for fluency.
- */
-
+     /*
+      * Set up reloadification on the current page.
+      * 
+      * @param opts String or Object. If it's a string, it signifies the URL
+      *    jquery.reloadify should poll for changes every 1 second.
+      * 
+      * If it's an object it should be like this:
+      * 
+      *     { 
+      *        url       : 'string', // Required!
+      *        poll_ms   : 1231,	// Poll every 1231 milliseconds instead of 1000.
+      *        verbosity : 1,	// Only the interesting bits
+      *     }
+      * 
+      * @return jQuery object for fluency.
+      */
      $.fn.reloadify = function( opts ) {
 	 // If opts is a single string it's the URL.
          if (typeof(opts) === "string") { 
@@ -47,22 +47,20 @@
 		 console.log("jQuery.reloadify: " + s);
 	     }
 	 };
-
          
 	 var pollify = function(){
 	     $.ajax(o.url, {ifModified:true}).
 		 done(pollSuccess).
 		 fail(function() {
-			  $.error("Failed to get "+ o.url);
+			  $.error("jQuery.reloadify: Failed to GET "+ o.url);
 		      });
 	 };
-
 
 	 var pollSuccess = function(data, textStatus, jqXHR) {
 	     var status_code = (jqXHR ? jqXHR.status : 'no jqXHR WTF?!');
 
 	     logify(2, "Success getting " + o.url + "! (" +
-		    (jqXHR ? jqXHR.status : 'no jqXHR') + ", " +
+		    status_code + ", " +
 		    (data ? data.length : 0) + " chars)");
 
 	     if (data && data.length) {
@@ -73,9 +71,7 @@
 		 logify(1,'304 Not Modified');
 	     }
 	     else if (o.last_data !== '' && o.last_data !== data) {
-		 if( console && console.log ) {
-		     logify(1,"RELOADIFYING");
-		 }
+		 logify(1,"RELOADIFYING");
 		 window.location.reload(true);
 	     }
 	     else {
@@ -90,4 +86,4 @@
          return this;
      };
 
-}(jQuery));
+ }(jQuery));
