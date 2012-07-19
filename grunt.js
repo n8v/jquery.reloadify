@@ -41,11 +41,13 @@ module.exports = function(grunt) {
         latedef: true,
         newcap: true,
         noarg: true,
+        smarttabs: true,
         sub: true,
         undef: true,
         boss: true,
         eqnull: true,
-        browser: true
+          browser: true,
+	  devel: true
       },
       globals: {
         jQuery: true

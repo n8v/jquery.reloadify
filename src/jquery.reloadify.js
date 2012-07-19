@@ -1,5 +1,6 @@
 /* -*- js2 -*-
  * 
+ * 
  * jquery.reloadify
  * https://github.com/n8v/jquery.reloadify
  *
@@ -7,37 +8,67 @@
  * Licensed under the MIT license.
  */
 
+/*global console */
 (function($) {
 
-    var methods = {
-        init: function(opts) {
-            var o = {}; // Default options
-            if (typeof(opts) === "string") {
-                o.url = opts;
-            }
-            else if (typeof(opts) === "Object" && opts.url) {
-                o.url = opts.url;               
-            }
-            if (! o.url) {
-                $.error( "No URL found in params passed to reloadify()!");
-            }
-            
-            return this;
-        }
-    };
+/*
+ * Set up reloadification on the current page.
+ * 
+ * @param opts String or Object. If it's a string, it signifies the URL
+ *    jquery.reloadify should poll for changes every 1 second.
+ * 
+ * If it's an object it should be like this:
+ * 
+ *     { 
+ *        url      : 'string', // Required!
+ *        poll_ms  : 1231,  // Poll every 1231 milliseconds instead of 1000.
+ *     }
+ * 
+ * @return jQuery object for fluency.
+ */
+     $.fn.reloadify = function( opts ) {
+	 // If opts is a single string it's the URL.
+         if (typeof(opts) === "string") { 
+	     var u = opts;
+	     opts = {
+		 url: u
+	     }; 
+         }
 
-    $.fn.reloadify = function( method ) {
-        
-        // Method calling logic
-        if ( methods[method] ) {
-            return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-        } else if ( typeof method === 'object' || ! method ) {
-            return methods.init.apply( this, arguments );
-        } else {
-            return $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
-        }    
-        
-    };
+	 // Default/overridable options, see
+	 // http://docs.jquery.com/Plugins/Authoring#Defaults_and_Options
+         var o = $.extend({
+			      poll_ms: 1000,
+			      last_data: ''
+			  }, opts); 
 
+         if (! o.url) {
+             $.error( "No URL found in params passed to reloadify()!");
+         }
+         
+	 var pollAndWait = function(){
+	     $.get(o.url).
+		 done(pollify).
+		 fail(function() {console.warn("Failed to get "+ o.url);});
+	 };
+
+
+	 var pollify = function(data, textStatus, jqXHR) {
+	     console.log("Success getting " + o.url + "!");
+	     console.log(data.substring(0, 140));
+	     if (o.last_data !== '' && o.last_data !== data) {
+		 console.log("RELOADIFYING");
+		 window.location.reload(true);
+	     }
+	     o.last_data = data;
+	     var timeoutId = window.setTimeout();
+	     window.setTimeout(pollAndWait, o.poll_ms);
+	 };
+
+	 pollAndWait();
+
+
+         return this;
+     };
 
 }(jQuery));

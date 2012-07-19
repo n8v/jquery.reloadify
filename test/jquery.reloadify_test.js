@@ -3,15 +3,15 @@
 /*global notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false*/
 (function($) {
 
-  /*
-    ======== A Handy Little QUnit Reference ========
-    http://docs.jquery.com/QUnit
+    /*
+      ======== A Handy Little QUnit Reference ========
+      http://docs.jquery.com/QUnit
 
-    Test methods:
+      Test methods:
       expect(numAssertions)
       stop(increment)
       start(decrement)
-    Test assertions:
+      Test assertions:
       ok(value, [message])
       equal(actual, expected, [message])
       notEqual(actual, expected, [message])
@@ -20,38 +20,29 @@
       strictEqual(actual, expected, [message])
       notStrictEqual(actual, expected, [message])
       raises(block, [expected], [message])
-  */
+    */
 
-  module('jQuery#awesome', {
-    setup: function() {
-      this.elems = $('#qunit-fixture').children();
-    }
-  });
+    module('jQuery#reloadify', {
+	setup: function() {
+	    var sample_url = '../src/jquery.reloadify.js';
 
-  test('is chainable', 1, function() {
-    // Not a bad test to run on collection methods.
-    strictEqual(this.elems.awesome(), this.elems, 'should be chaninable');
-  });
+	    this.returned = $().reloadify(sample_url);
+	}
+    });
 
-  test('is awesome', 1, function() {
-    strictEqual(this.elems.awesome().text(), 'awesomeawesomeawesome', 'should be thoroughly awesome');
-  });
 
-  module('jQuery.awesome');
 
-  test('is awesome', 1, function() {
-    strictEqual($.awesome(), 'awesome', 'should be thoroughly awesome');
-  });
 
-  module(':awesome selector', {
-    setup: function() {
-      this.elems = $('#qunit-fixture').children();
-    }
-  });
+    test('is chainable', 1, function() {
+	strictEqual(typeof(this.returned), "object", 'should return a (jQuery) object... not that this is a very good test.');
+    });
 
-  test('is awesome', 1, function() {
-    // Use deepEqual & .get() when comparing jQuery objects.
-    deepEqual(this.elems.filter(':awesome').get(), this.elems.last().get(), 'knows awesome when it sees it');
-  });
+    module('jQuery.reloadify');
+
+    test('is reloadify', 1, function() {
+	// How in the world am I going to really test this?
+	strictEqual(true, true, 'should be thoroughly reloadify');
+    });
+
 
 }(jQuery));
