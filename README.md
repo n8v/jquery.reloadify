@@ -6,6 +6,8 @@ Caveman reloadification.
 
 This here, you give it a URL to poll, and when it sees the content of *that* URL change, it will reload *this* whole entire page. Making that URL change is left as an exercise for the reader.
 
+There's no reason this should only be confined to development either - there might be any number of reasons you want to be able to trigger a whole page refresh for users.
+
 ## Getting Started
 Download the [production version][min] or the [development version][max].
 
