@@ -1,6 +1,5 @@
 /* -*- js2 -*-
  * 
- * 
  * jquery.reloadify
  * https://github.com/n8v/jquery.reloadify
  *
@@ -46,29 +45,31 @@
              $.error( "No URL found in params passed to reloadify()!");
          }
          
-	 var pollAndWait = function(){
+	 var pollify = function(){
 	     $.get(o.url).
-		 done(pollify).
-		 fail(function() {console.warn("Failed to get "+ o.url);});
+		 done(pollSuccess).
+		 fail(function() {
+			  $.error("Failed to get "+ o.url);
+		      });
 	 };
 
 
-	 var pollify = function(data, textStatus, jqXHR) {
-	     console.log("Success getting " + o.url + "!");
-	     console.log(data.substring(0, 140));
+	 var pollSuccess = function(data, textStatus, jqXHR) {
+	     // console.log("Success getting " + o.url + "!");
+	     // console.log(data.substring(0, 140));
 	     if (o.last_data !== '' && o.last_data !== data) {
-		 console.log("RELOADIFYING");
+		 // console.log("RELOADIFYING");
 		 window.location.reload(true);
 	     }
 	     o.last_data = data;
 	     var timeoutId = window.setTimeout();
-	     window.setTimeout(pollAndWait, o.poll_ms);
+	     window.setTimeout(pollify, o.poll_ms);
 	 };
 
-	 pollAndWait();
-
+	 pollify();
 
          return this;
      };
 
 }(jQuery));
+
