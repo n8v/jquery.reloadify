@@ -1,6 +1,5 @@
 /*global module:false*/
 module.exports = function(grunt) {
-
   // Project configuration.
   grunt.initConfig({
     pkg: '<json:package.json>',
@@ -31,7 +30,7 @@ module.exports = function(grunt) {
     },
     watch: {
       files: '<config:lint.files>',
-      tasks: 'lint qunit concat min'
+      tasks: 'default'
     },
     jshint: {
       options: {
@@ -47,16 +46,30 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
           browser: true,
-	  devel: true
+          devel: true
       },
       globals: {
         jQuery: true
       }
     },
-    uglify: {}
+    uglify: {}//,
+    // reloadify: {
+    //  file: 'reloadify.txt'
+    // }
   });
 
+  // Example for using this plugin with grunt
+  grunt.registerTask(
+    'reloadify', 
+    'Update a file named "reloadify" for use with jquery.reloadify.', 
+    function() {
+      var f = grunt.config('reloadify.file') || './reloadify.txt';
+      grunt.log.writeln('Updating the "' + f + '" file.');
+      var d = new Date();
+      grunt.file.write(f, d.toISOString());
+    });
+
   // Default task.
-  grunt.registerTask('default', 'lint qunit concat min');
+  grunt.registerTask('default', 'lint qunit concat min reloadify');
 
 };

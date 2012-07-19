@@ -26,6 +26,7 @@
 	setup: function() {
 	    // var sample_url = '../src/jquery.reloadify.js';
 	    var sample_url = './changeme.html';
+	    sample_url = '../reloadify.txt';
 
 //	    this.returned = $().reloadify(sample_url);
 	    this.returned = $().reloadify({
@@ -34,9 +35,6 @@
 	    });
 	}
     });
-
-
-
 
     test('is chainable', 1, function() {
 	strictEqual(typeof(this.returned), "object", 'should return a (jQuery) object... not that this is a very good test.');
@@ -48,6 +46,5 @@
 	// How in the world am I going to really test this?
 	strictEqual(true, true, 'should be thoroughly reloadify');
     });
-
 
 }(jQuery));

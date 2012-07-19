@@ -43,9 +43,20 @@ If you have Special Needs of Great Impatience, give it a configuration object su
 
 ```
 
+## Gruntification
+
+See [this project's gruntfile](./grunt.js) for an example of a custom 'reloadify' task which can use [Grunt's](https://github.com/cowboy/grunt) `watch` feature to update a timestamp file (which can then trigger reloadification) whenever one of the files you're working on changes. So it's like,
+
+0. Set up jquery.reloadify() on your page and point it to `reloadify.txt` in the dir next to your gruntfile.
+1. Run `grunt watch` in a terminal.
+2. Load your page containing `jquery.reloadify()` in one or more browsers (on any JS capable device).
+3. Edit away... every time you save, grunt will build your stuff and trigger the browsers to refresh.
+
+It's nice too because jshint and qunit should catch some of the syntax errors early in the build, and it won't make it to the browsers. If a JS error gets through to the browser you may have to refresh to get the reloadifier working again.
+
 ## Contributing
 
-GIVE ME YOUR TIRED, YOUR POOR
+GIVE ME YOUR TIRED, YOUR POOR,
 
 YOUR HUDDLED PULL REQUESTS YEARNING TO BREATHE FREE.
 
