@@ -28,7 +28,11 @@ jQuery(function($) {
 </script>
 ```
 
-`my_url` is up to you. Make it change whenever you want the page to reload, like whenever you take a sip of coffee or touch a key or something. This supports 304 Not Modified codes just fine and it saves some bytes. Beware [the Same Origin Policy](http://en.wikipedia.org/wiki/Same_origin_policy) - but see below!
+`my_url` is up to you. 
+
+- Make it change whenever you want the page to reload, like whenever you take a sip of coffee or touch a key or something. 
+- This plugin supports 304 Not Modified codes just fine and it saves some bytes. 
+- Beware [the Same Origin Policy](http://en.wikipedia.org/wiki/Same_origin_policy) - but see below!
 
 ## Totally Advanced Options
 
