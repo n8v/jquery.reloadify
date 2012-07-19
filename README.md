@@ -32,6 +32,7 @@ jQuery(function($) {
 
 `my_url` is up to you. 
 
+- Relative URLs work great.
 - Make it change whenever you want the page to reload, like whenever you take a sip of coffee or touch a key or something. 
 - Or use a file watcher/build pipeline tool like [Grunt (see below)](#gruntification)
 - This plugin supports 304 Not Modified codes just fine. It's a good idea; it saves some bytes. 
