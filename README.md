@@ -20,20 +20,25 @@ In your web page:
 <script>
 jQuery(function($) {
 
-  $.reloadify('my_url'); // Poll 'my_url' every 1 second and reload this
-                         // page when its content changes.
+  $().reloadify('my_url'); // Poll 'my_url' every 1 second and reload this
+                         // here whole web page when that URL's content changes.
+
 
 });
 </script>
 ```
 
-## Documentation
-_(Coming soon)_
+`my_url` is up to you. Make it change whenever you want the page to reload, like whenever you take a sip of coffee or something. Beware the Same Origin Policy!
 
-Use Docco.
+Or if you have Special Needs of Great Impatience,
 
-## Examples
-_(Coming soon)_
+```js
+  $().reloadify({
+     url: 'my_url',
+     poll_ms: 500   // Poll every 500ms instead
+  });
+
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/cowboy/grunt).
@@ -41,7 +46,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _Also, please don't edit files in the "dist" subdirectory as they are generated via grunt. You'll find source code in the "src" subdirectory!_
 
 ## Release History
-_(Nothing yet)_
+7/18/2012 - 0.1.0 - It just barely maybe works I think in at least one case! Time to release!
 
 ## License
 Copyright (c) 2012 Nathan Vonnahme  
