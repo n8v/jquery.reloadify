@@ -40,7 +40,8 @@
          var o = $.extend({
 			      poll_ms: 1000,
 			      last_data: '',
-			      verbosity: 0
+			      verbosity: 0,
+			      ajaxOpts: {ifModified:true}
 			  }, opts); 
 
          if (! o.url) {
@@ -54,7 +55,7 @@
 	 };
          
 	 var pollify = function(){
-	     $.ajax(o.url, {ifModified:true}).
+	     $.ajax(o.url, o.ajaxOpts).
 		 done(pollSuccess).
 		 fail(function() {
 			  $.error("jQuery.reloadify: Failed to GET "+ o.url);
@@ -67,6 +68,14 @@
 	     logify(2, "Success getting " + o.url + "! (" +
 		    status_code + ", " +
 		    (data ? data.length : 0) + " chars)");
+
+	     logify(3, "DataType = " + this.dataType);
+	     if (this.dataType && this.dataType === 'script') {
+		 // The remote script defined a callback which we'll
+		 // going to call here to get the content.
+		 /*global global_jqueryreloadify_data */
+		 data = global_jqueryreloadify_data;
+	     }
 
 	     if (data && data.length) {
 		 logify(3, data.substring(0, 140));

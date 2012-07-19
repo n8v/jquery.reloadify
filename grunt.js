@@ -45,8 +45,8 @@ module.exports = function(grunt) {
         undef: true,
         boss: true,
         eqnull: true,
-          browser: true,
-          devel: true
+	browser: true,
+	devel: true
       },
       globals: {
         jQuery: true
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
     // }
   });
 
-  // Example for using this plugin with grunt
+  // Example for using this plugin with Grunt
   grunt.registerTask(
     'reloadify', 
     'Update a file named "reloadify" for use with jquery.reloadify.', 
@@ -66,7 +66,9 @@ module.exports = function(grunt) {
       var f = grunt.config('reloadify.file') || './reloadify.txt';
       grunt.log.writeln('Updating the "' + f + '" file.');
       var d = new Date();
-      grunt.file.write(f, d.toISOString());
+      var js = 'var global_jqueryreloadify_data = "' + 
+	    d.toISOString() + '";';
+      grunt.file.write(f, js);
     });
 
   // Default task.
