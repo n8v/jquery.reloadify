@@ -28,14 +28,15 @@ jQuery(function($) {
 </script>
 ```
 
-`my_url` is up to you. Make it change whenever you want the page to reload, like whenever you take a sip of coffee or something. Beware the Same Origin Policy!
+`my_url` is up to you. Make it change whenever you want the page to reload, like whenever you take a sip of coffee or something. Beware [the Same Origin Policy](http://en.wikipedia.org/wiki/Same_origin_policy)!
 
-Or if you have Special Needs of Great Impatience,
+Or if you have Special Needs of Great Impatience, give it a configuration object such as:
 
 ```js
   $().reloadify({
-     url: 'my_url',
-     poll_ms: 500   // Poll every 500ms instead
+     url        : 'my_url',
+     poll_ms    : 500,        // Poll every 500ms instead
+     verbosity  : 11          // Turn console.log()ification up to 11!
   });
 
 ```

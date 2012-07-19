@@ -24,9 +24,14 @@
 
     module('jQuery#reloadify', {
 	setup: function() {
-	    var sample_url = '../src/jquery.reloadify.js';
+	    // var sample_url = '../src/jquery.reloadify.js';
+	    var sample_url = './changeme.html';
 
-	    this.returned = $().reloadify(sample_url);
+//	    this.returned = $().reloadify(sample_url);
+	    this.returned = $().reloadify({
+		url:sample_url,
+		verbosity: 1
+	    });
 	}
     });
 

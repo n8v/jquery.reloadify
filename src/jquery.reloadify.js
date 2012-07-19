@@ -19,12 +19,14 @@
  * If it's an object it should be like this:
  * 
  *     { 
- *        url      : 'string', // Required!
- *        poll_ms  : 1231,  // Poll every 1231 milliseconds instead of 1000.
+ *        url       : 'string', // Required!
+ *        poll_ms   : 1231,	// Poll every 1231 milliseconds instead of 1000.
+ *        verbosity : 1,	// Only the interesting bits
  *     }
  * 
  * @return jQuery object for fluency.
  */
+
      $.fn.reloadify = function( opts ) {
 	 // If opts is a single string it's the URL.
          if (typeof(opts) === "string") { 
@@ -38,15 +40,23 @@
 	 // http://docs.jquery.com/Plugins/Authoring#Defaults_and_Options
          var o = $.extend({
 			      poll_ms: 1000,
-			      last_data: ''
+			      last_data: '',
+			      verbosity: 0
 			  }, opts); 
 
          if (! o.url) {
              $.error( "No URL found in params passed to reloadify()!");
          }
+
+	 var logify = function(loglevel, s) {
+	     if( console && console.log && o.verbosity >= loglevel ) {
+		 console.log("jQuery.reloadify: " + s);
+	     }
+	 };
+
          
 	 var pollify = function(){
-	     $.get(o.url).
+	     $.ajax(o.url, {ifModified:true}).
 		 done(pollSuccess).
 		 fail(function() {
 			  $.error("Failed to get "+ o.url);
@@ -55,15 +65,30 @@
 
 
 	 var pollSuccess = function(data, textStatus, jqXHR) {
-	     // console.log("Success getting " + o.url + "!");
-	     // console.log(data.substring(0, 140));
-	     if (o.last_data !== '' && o.last_data !== data) {
-		 // console.log("RELOADIFYING");
+	     var status_code = (jqXHR ? jqXHR.status : 'no jqXHR WTF?!');
+
+	     logify(2, "Success getting " + o.url + "! (" +
+		    (jqXHR ? jqXHR.status : 'no jqXHR') + ", " +
+		    (data ? data.length : 0) + " chars)");
+
+	     if (data && data.length) {
+		 logify(3, data.substring(0, 140));
+	     }
+	     
+	     if ( status_code === 304 ) {
+		 logify(1,'304 Not Modified');
+	     }
+	     else if (o.last_data !== '' && o.last_data !== data) {
+		 if( console && console.log ) {
+		     logify(1,"RELOADIFYING");
+		 }
 		 window.location.reload(true);
 	     }
+	     else {
+		 logify(1, '200 OK but no change or brand new content');
+	     }
 	     o.last_data = data;
-	     var timeoutId = window.setTimeout();
-	     window.setTimeout(pollify, o.poll_ms);
+	     var timeoutId = window.setTimeout(pollify, o.poll_ms);
 	 };
 
 	 pollify();
@@ -72,4 +97,3 @@
      };
 
 }(jQuery));
-
