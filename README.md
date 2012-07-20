@@ -57,10 +57,11 @@ If you have Special Needs, give it a configuration object such as:
 See [this project's gruntfile](./grunt.js) for an example of a custom 'reloadify' task which can use [Grunt's](https://github.com/cowboy/grunt) `watch` feature to update a timestamp file (which can then trigger reloadification) whenever one of the files you're working on changes. So it's like,
 
 0. Set up jquery.reloadify() on your page and point it to `reloadify.txt` in the dir next to your gruntfile.
-1. Run `grunt reloadify` to manually trigger a reload.
-2. Run `grunt watch` in a terminal.
-3. Load your page containing `jquery.reloadify()` in one or more browsers (on any JS capable device).
-4. Edit away... every time you save, grunt will build your stuff and trigger the browsers to refresh.
+1. Copy the reloadify task section out of [this gruntfile](./grunt.js) into yours, and modify the `default` and `watch` tasks to include it, as in the examples
+2. Run `grunt reloadify` to manually trigger a reload.
+3. Run `grunt watch` in a terminal.
+4. Load your page containing `jquery.reloadify()` in one or more browsers (on any JS capable device).
+5. Edit away... every time you save, grunt will build your stuff and trigger the browsers to refresh.
 
 It's nice too because jshint and qunit should catch some of the syntax errors early in the build, and it won't make it to the browsers. If a JS error gets through to the browser you may have to refresh to get the reloadifier working again.
 

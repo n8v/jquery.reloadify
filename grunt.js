@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     },
     watch: {
       files: '<config:lint.files>',
-      tasks: 'default'
+      tasks: 'default' // includes reloadify (see definition below)
     },
     jshint: {
       options: {
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
     // }
   });
 
-  // Example for using this plugin with Grunt
+  // Example for using jquery.reloadify with Grunt
   grunt.registerTask(
     'reloadify', 
     'Update a file named "reloadify" for use with jquery.reloadify.', 
@@ -71,7 +71,8 @@ module.exports = function(grunt) {
       grunt.file.write(f, js);
     });
 
+
   // Default task.
   grunt.registerTask('default', 'lint qunit concat min reloadify');
-
+                                                      // ^^^^ include reloadify here
 };
