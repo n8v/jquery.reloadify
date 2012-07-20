@@ -94,7 +94,7 @@ YOUR HUDDLED PULL REQUESTS YEARNING TO BREATHE FREE.
 _Also, please don't edit files in the "dist" subdirectory as they are generated via grunt. You'll find source code in the "src" subdirectory!_
 
 ## Release History
-7/19/2012 - 0.1.0 - It just barely maybe works I think in at least one case! Time to call it a release!
+7/19/2012 - 0.1.0 - It just barely maybe works I think at least for me and even in IE6! Time to call it a release!
 
 ## License
 Copyright (c) 2012 Nathan Vonnahme  
