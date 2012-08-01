@@ -29,10 +29,8 @@
      $.reloadify = function( opts ) {
 	 // If opts is a single string it's the URL.
          if (typeof(opts) === "string") { 
-	     var u = opts; // Store temporarily since we're overwriting
-			   // `opts`.
 	     opts = {
-		 url: u
+		 url: opts
 	     }; 
          }
 
