@@ -49,7 +49,7 @@
 
 	 var logify = function(loglevel, s) {
 	     // Workaround for stupid old IEs.
-	     if( typeof window.console !== "undefined" && 
+	     if( typeof console !== "undefined" && 
 		 console.log && 
 		 o.verbosity >= loglevel ) {
 		 console.log("jQuery.reloadify: " + s);
