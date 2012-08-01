@@ -1,10 +1,9 @@
-/*! jQuery Reloadify - v0.1.0 - 2012-08-01
+/*! jQuery Reloadify - v0.2.0 - 2012-08-01
 * https://github.com/n8v/jquery.reloadify
 * Copyright (c) 2012 Nathan Vonnahme; Licensed MIT */
 
 /*global console */
 (function($) {
-
      /*
       * Set up reloadification on the current page.
       * 

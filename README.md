@@ -24,7 +24,7 @@ jQuery(function($) {
 
   // Poll 'my_url' every 1 second and reload this
   // here whole web page when that URL's content changes.
-  $().reloadify('my_url'); 
+  $.reloadify('my_url'); 
 
 });
 </script>
@@ -43,7 +43,7 @@ jQuery(function($) {
 If you have Special Needs, give it a configuration object such as:
 
 ```js
-  $().reloadify({
+  $.reloadify({
      url        : 'my_url',
      poll_ms    : 500,        // Poll every 500ms instead
      verbosity  : 11,         // Turn console.log()ification up to 11!
@@ -78,7 +78,7 @@ This could be added to one of your existing files or include other code *as long
 
 1. Tell reloadify to tell jQuery to do that remote `$.getScript()` thing:
 ```js
-$().reloadify({
+$.reloadify({
 		url:  'http://myotherserver.com/reloadifier_triggerator.js',
 		ajaxOpts: { dataType: 'script' }
 	    });
@@ -94,6 +94,7 @@ YOUR HUDDLED PULL REQUESTS YEARNING TO BREATHE FREE.
 _Also, please don't edit files in the "dist" subdirectory as they are generated via grunt. You'll find source code in the "src" subdirectory!_
 
 ## Release History
+8/1/2012 - 0.2.0 - Change to static function and undo some WTF.
 7/19/2012 - 0.1.0 - It just barely maybe works I think at least for me and even in IE6! Time to call it a release!
 
 ## License

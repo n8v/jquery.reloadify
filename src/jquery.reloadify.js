@@ -9,7 +9,6 @@
 
 /*global console */
 (function($) {
-
      /*
       * Set up reloadification on the current page.
       * 
