@@ -31,7 +31,7 @@
     module('jQuery#reloadify', {
         setup: function() {
             var sample_url = '../reloadify.txt';
-            this.returned = $().reloadify(sample_url);
+            this.returned = $.reloadify(sample_url);
 
 
             // remote example
@@ -45,7 +45,7 @@
     });
 
     test('is chainable', 1, function() {
-        strictEqual(typeof(this.returned), "object", 'should return a (jQuery) object... not that this is a very good test.');
+        strictEqual(typeof(this.returned), "function", 'should return the jQuery function... not that this is a very good test.');
     });
 
     module('jQuery.reloadify');

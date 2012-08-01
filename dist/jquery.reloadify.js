@@ -1,4 +1,4 @@
-/*! jQuery Reloadify - v0.1.0 - 2012-07-19
+/*! jQuery Reloadify - v0.1.0 - 2012-08-01
 * https://github.com/n8v/jquery.reloadify
 * Copyright (c) 2012 Nathan Vonnahme; Licensed MIT */
 
@@ -14,17 +14,18 @@
       * If it's an object it should be like this:
       * 
       *     { 
-      *        url       : 'string', // Required!
+      *        url       : 'string',	// Required!
       *        poll_ms   : 1231,	// Poll every 1231 milliseconds instead of 1000.
-      *        verbosity : 1,	// Only the interesting bits
+      *        verbosity : 1,		// Only the interesting bits
       *     }
       * 
-      * @return jQuery object for fluency.
+      * @return jQuery function for fluency.
       */
-     $.fn.reloadify = function( opts ) {
+     $.reloadify = function( opts ) {
 	 // If opts is a single string it's the URL.
          if (typeof(opts) === "string") { 
-	     var u = opts;
+	     var u = opts; // Store temporarily since we're overwriting
+			   // `opts`.
 	     opts = {
 		 url: u
 	     }; 
@@ -44,8 +45,9 @@
          }
 
 	 var logify = function(loglevel, s) {
-	     // Workaround for stupid old IEs
-	     if( typeof window.console !== "undefined" && console.log && 
+	     // Workaround for stupid old IEs.
+	     if( typeof window.console !== "undefined" && 
+		 console.log && 
 		 o.verbosity >= loglevel ) {
 		 console.log("jQuery.reloadify: " + s);
 	     }
@@ -89,7 +91,7 @@
 		 logify(1, '200 OK but no change or brand new content');
 	     }
 	     o.last_data = data;
-	     var timeoutId = window.setTimeout(pollify, o.poll_ms);
+	     setTimeout(pollify, o.poll_ms);
 	 };
 
 	 pollify();
